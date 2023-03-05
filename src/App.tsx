@@ -1,25 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState, Fragment } from "react";
 
-function App() {
+function App(): JSX.Element { 
+
+  const [newTask, setNewTask] = useState<string>("");  
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault(); 
+    console.log(newTask);
+    
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>  
+      <form onSubmit={handleSubmit} className="m-5"> 
+        <input className=" border-[#2A5B45] border-4 mx-4"
+          type="text" onChange={e=> setNewTask(e.target.value)}/> 
+        <button>Save</button>
+      </form>
+
+    
+    </Fragment>
   );
 }
 
